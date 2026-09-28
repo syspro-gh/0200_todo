@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Todo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Todo</h1>
+      <p class="summary" id="summary"></p>
+    </header>
+
+    <form class="add-form" id="add-form" autocomplete="off">
+      <input class="add-title" id="add-title" type="text" placeholder="やることを入力して Enter" maxlength="200" required>
+      <div class="add-options">
+        <label>
+          期限
+          <input id="add-due" type="date">
+        </label>
+        <label>
+          優先度
+          <select id="add-priority">
+            <option value="low">低</option>
+            <option value="normal" selected>中</option>
+            <option value="high">高</option>
+          </select>
+        </label>
+        <button type="submit" class="btn-primary">追加</button>
+      </div>
+    </form>
+
+    <div class="toolbar">
+      <div class="filters" role="tablist" aria-label="表示の切り替え">
+        <button type="button" class="filter is-active" data-filter="all">すべて</button>
+        <button type="button" class="filter" data-filter="active">未完了</button>
+        <button type="button" class="filter" data-filter="done">完了</button>
+      </div>
+      <input class="search" id="search" type="search" placeholder="検索">
+    </div>
+
+    <ul class="todo-list" id="todo-list"></ul>
+    <p class="empty" id="empty" hidden></p>
+
+    <footer class="app-footer">
+      <span class="hint">ダブルクリックで編集・ドラッグで並べ替え</span>
+      <button type="button" class="btn-link" id="clear-done">完了したものを削除</button>
+    </footer>
+  </main>
+
+  <template id="todo-template">
+    <li class="todo">
+      <span class="handle" aria-hidden="true">⋮⋮</span>
+      <input class="toggle" type="checkbox" aria-label="完了にする">
+      <div class="body">
+        <span class="title"></span>
+        <div class="meta">
+          <span class="priority"></span>
+          <span class="due"></span>
+        </div>
+      </div>
+      <button type="button" class="delete" aria-label="削除">✕</button>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
